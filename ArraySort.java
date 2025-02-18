@@ -20,6 +20,20 @@ public class ArraySort {
         System.out.print("Відсортований масив: ");
         printArray(array);
 
+        System.out.println();
+
+        int target = 94; // Число, яке шукаємо
+
+        System.out.println("Введіть число для пошуку: " + target);
+
+        int result = binarySearch(array, target); // Викликаємо бінарний пошук
+
+        if (result == -1) {
+            System.out.println("Елемент " + target + " не знайдено в масиві.");
+        } else {
+            System.out.println("Елемент " + target + " знайдено на індексі " + result);
+        }
+
     }
         /* Відсортуйте масив за допомогою алгоритму сортування вставкою
         (Insertion Sort) в порядку зростання.
@@ -45,4 +59,26 @@ public class ArraySort {
             System.out.print(num + ", ");
         }
     }
+    // Метод для реалізації бінарного пошуку (ітеративний підхід)
+    public static int binarySearch(int[] arr, int target) {
+        int left = 0; // Початковий індекс
+        int right = arr.length - 1; // Кінцевий індекс
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2; // Знаходимо середній індекс
+
+            if (arr[mid] == target) {
+                return mid; // Знайдено елемент, повертаємо його індекс
+            }
+
+            if (arr[mid] < target) {
+                left = mid + 1; // Ігноруємо ліву частину (шукаємо в правій)
+            } else {
+                right = mid - 1; // Ігноруємо праву частину (шукаємо в лівій)
+            }
+        }
+
+        return -1; // Якщо елемент не знайдено, повертаємо -1
+    }
 }
+
